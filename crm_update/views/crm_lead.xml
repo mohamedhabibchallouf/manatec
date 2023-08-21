@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+	<!-- inherit view of Lead Form : adding the "convert to ticket" button -->
+	<record id="crm_lead_view_form_crm_inherits" model="ir.ui.view">
+		<field name="name">crm.lead.form.inherits.crm</field>
+		<field name="model">crm.lead</field>
+		<field name="inherit_id" ref="crm.crm_lead_view_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//page[@name='lead']" position="after">
+				<page string='Checklist'>
+				<group>
+					<group>
+						<field name="check_one" widget='toggle'/>
+						<field name="check_two" widget='toggle'/>
+					</group>
+
+					<group>
+						<field name="check_tree" widget='toggle'/>
+						<field name="check_four" widget='toggle'/>
+					</group>
+					<group>
+					<field name="check_progress_rate" widget="progressbar" />
+					</group>
+					</group>
+				</page>
+			</xpath>
+		</field>
+	</record>
+		<record id="crm_lead_view_list" model="ir.ui.view">
+		<field name="name">crm.lead.list</field>
+		<field name="model">crm.lead</field>
+		<field name="inherit_id" ref="crm.crm_case_tree_view_oppor" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='stage_id']" position="before">
+					<field name="check_progress_rate" widget="progressbar" string='Progress Rate' />
+			</xpath>
+		</field>
+	</record>
+
+</odoo>
